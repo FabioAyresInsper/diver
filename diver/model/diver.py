@@ -1,18 +1,14 @@
 # pylint: disable=missing-docstring, no-member, invalid-name
-import sys
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as NF
 
 from tqdm import tqdm
 
-from model.mlps import PositionalEncoding, mlp, ImplicitMLP
+from diver.model.mlps import PositionalEncoding, mlp, ImplicitMLP
 
-from utils.ray_voxel_intersection import ray_voxel_intersect, masked_intersect
-from utils.integrator import integrate, integrate_mlp
-
-sys.path.append('..')
+from diver.utils.ray_voxel_intersection import ray_voxel_intersect, masked_intersect
+from diver.utils.integrator import integrate, integrate_mlp
 
 
 class DIVeR(nn.Module):

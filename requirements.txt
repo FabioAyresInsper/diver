@@ -1,1 +1,6 @@
 -e .
+
+torch
+torchvision
+torchaudio
+pytorch-lightning

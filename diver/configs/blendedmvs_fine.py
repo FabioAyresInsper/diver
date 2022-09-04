@@ -1,50 +1,48 @@
+# pylint: disable=missing-docstring
 default_options = {
     # dataset config
-    'im_shape':{
+    'im_shape': {
         'type': int,
         'nargs': 2,
-        'default': [576,768]
+        'default': [576, 768]
     },
-    'batch_size':{
+    'batch_size': {
         'type': int,
-        'default': 1024*8
+        'default': 1024 * 8
     },
     'dataset': {
         'type': str,
         'nargs': 2,
-        'default': ['tanks','path_to_scene']
+        'default': ['tanks', 'path_to_scene']
     },
     'num_workers': {
         'type': int,
         'default': 6
     },
 
-
     # coarse to fine config
-    'fine':{
+    'fine': {
         'type': int,
         'default': 0
     },
-    'coarse_path':{
+    'coarse_path': {
         'type': str,
         'default': 'path_to_coarse_checkpoint_folder'
     },
-    'mask_scale':{
+    'mask_scale': {
         'type': float,
         'default': 1.0
     },
-    
-    
+
     # training strategy config
-    'implicit':{
+    'implicit': {
         'type': bool,
         'default': True
     },
-    'thresh_a':{
+    'thresh_a': {
         'type': float,
         'default': 1e-2
     },
-    
 
     # optimizer config
     'optimizer': {
@@ -60,80 +58,75 @@ default_options = {
         'type': float,
         'default': 0
     },
-
-    'scheduler_rate':{
+    'scheduler_rate': {
         'type': float,
         'default': 0.5
     },
-    'milestones':{
+    'milestones': {
         'type': int,
         'nargs': '*',
-        'default': [1000] # never used
+        'default': [1000]  # never used
     },
-    
-    
+
     # voxel grid config
-    'grid_size':{
+    'grid_size': {
         'type': float,
         'default': 2.8
     },
-    'voxel_num':{
+    'voxel_num': {
         'type': int,
         'default': 256
     },
-    'voxel_dim':{
+    'voxel_dim': {
         'type': int,
         'default': 32
     },
-    
-    
+
     # regularization loss config
-    'l_s':{
+    'l_s': {
         'type': float,
         'default': 1e-5
     },
-    
-    
+
     # implicit model config
-    'implicit_network_depth':{
+    'implicit_network_depth': {
         'type': int,
         'default': 8
     },
-    'implicit_channels':{
+    'implicit_channels': {
         'type': int,
         'default': 512
     },
-    'implicit_skips':{
+    'implicit_skips': {
         'type': int,
-        'nargs':'*',
+        'nargs': '*',
         'default': [4]
     },
-    'implicit_point_encode':{
+    'implicit_point_encode': {
         'type': int,
         'default': 10
     },
-    
-    
+
     # decoer mlp config
     'mlp_point': {
         'type': int,
         'nargs': 3,
-        'default': [64,1,65]
+        'default': [64, 1, 65]
     },
     'mlp_view': {
         'type': int,
         'nargs': 2,
-        'default': [64,1]
+        'default': [64, 1]
     },
-    'dir_encode':{
+    'dir_encode': {
         'type': int,
         'default': 4
     },
-    
-    
+
     # rendering config
     'white_back': {
         'type': bool,
-        'default': True # True for char and statues, False for jade and fountain
+        'default':
+        True  # True for char and statues, False for jade and fountain
     }
 }
