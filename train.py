@@ -234,9 +234,7 @@ if __name__ == '__main__':
         args,
         resume_from_checkpoint=last_ckpt,
         logger=logger,
-        checkpoint_callback=checkpoint_callback,
-        flush_logs_every_n_steps=1,
-        log_every_n_steps=1,
+        callbacks=[checkpoint_callback],
         max_epochs=args.max_epochs
     )
 
