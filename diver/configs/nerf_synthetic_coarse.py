@@ -13,7 +13,7 @@ default_options = {
     'dataset': {
         'type': str,
         'nargs': 2,
-        'default': ['blender', 'path_to_scene']
+        'default': ['blender', '/home/fjayres/Dropbox/Insper/Projetos/Pesquisa/Luciano/uiuc/data/diver/nerf_synthetic/lego']  # pylint: disable=line-too-long
     },
     'num_workers': {
         'type': int,
