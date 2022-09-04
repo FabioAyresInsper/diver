@@ -5,12 +5,16 @@ import torch.nn.functional as NF
 
 from tqdm import tqdm
 
-from diver.model.mlps import PositionalEncoding, mlp, ImplicitMLP
+from diver.model.mlps import PositionalEncoding
+from diver.model.mlps import mlp
+from diver.model.mlps import ImplicitMLP
+from diver.utils.ray_voxel_intersection import ray_voxel_intersect
+from diver.utils.ray_voxel_intersection import masked_intersect
+from diver.utils.integrator import integrate
+from diver.utils.integrator import integrate_mlp
 
-from diver.utils.ray_voxel_intersection import ray_voxel_intersect, masked_intersect
-from diver.utils.integrator import integrate, integrate_mlp
 
-
+# pylint: disable=too-many-instance-attributes
 class DIVeR(nn.Module):
 
     def __init__(self, hparams):
@@ -28,7 +32,7 @@ class DIVeR(nn.Module):
         self.voxel_size = self.grid_size / self.voxel_num
 
         # assume zero centered voxel grid
-        N = self.voxel_num * self.voxel_size
+        N = self.voxel_num * self.voxel_size  # FJA: self.grid_size?
         self.xyzmin = -N * 0.5  # voxel grid boundary
         self.xyzmax = N * 0.5  # voxel grid boundary
 

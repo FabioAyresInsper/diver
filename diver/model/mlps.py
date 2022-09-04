@@ -1,9 +1,10 @@
-# pylint: disable=missing-docstring, invalid-name, no-member
+# pylint: disable=missing-docstring, invalid-name, no-member, too-many-instance-attributes, too-many-arguments
 import math
 
 import torch
-import torch.nn as nn
-import torch.nn.functional as NF
+
+from torch import nn
+from torch.nn import functional as NF
 
 
 class PositionalEncoding(nn.Module):
@@ -57,11 +58,17 @@ class ImplicitMLP(nn.Module):
 
         self.point_encode = PositionalEncoding(dim_enc)
 
-        self.pts_linears = nn.ModuleList([nn.Linear(self.input_ch, self.C)] + [
-            nn.Linear(self.C, self.C) if i not in
-            self.skips else nn.Linear(self.C + self.input_ch, self.C)
-            for i in range(1, self.D)
-        ])
+        self.pts_linears = nn.ModuleList( \
+            [ \
+                nn.Linear(self.input_ch, self.C) \
+            ] + \
+            [ \
+                nn.Linear(self.C, self.C) \
+                if i not in self.skips \
+                else nn.Linear(self.C + self.input_ch, self.C) \
+                for i in range(1, self.D) \
+            ] \
+        )
         self.feature_linear = nn.Linear(self.C, self.dim_out)
 
     def forward(self, x):
@@ -72,11 +79,13 @@ class ImplicitMLP(nn.Module):
             Bx3 corresponding feature vectors
         """
         points = self.point_encode(x)
+
         p = points
         for i, l in enumerate(self.pts_linears):
             if i in self.skips:
                 p = torch.cat([points, p], 1)
             p = l(p)
             p = NF.relu(p)
+            
         feature = self.feature_linear(p)
         return feature
