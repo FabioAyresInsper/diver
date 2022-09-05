@@ -3,5 +3,6 @@
 torch
 torchvision
 torchaudio
+torch-scatter
 pytorch-lightning
 Ninja
